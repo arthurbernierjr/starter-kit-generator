@@ -1,6 +1,6 @@
 {
-  "name": "big-poppa-code-react-starter",
-  "version": "1.0.20",
+  "name": "create-erica-react-app",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,6 +14,6 @@
     "inquirer": "^7.0.1"
   },
   "bin": {
-    "lets-code": "./index.js"
+    "create-erica-react-app": "./index.js"
   }
 }
