@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
@@ -33,8 +32,12 @@ module.exports = env => {
 					test: /\.scss$/,
 					use: [
 						'style-loader',
-						MiniCssExtractPlugin.loader,
-						'css-loader',
+						{
+							loader: "css-loader",
+							options: {
+								modules: true,
+							},
+						},
 						'sass-loader',
 						'postcss-loader'
 					]
@@ -47,9 +50,6 @@ module.exports = env => {
 			]
 		},
 		plugins: [
-			new MiniCssExtractPlugin({
-				filename: 'style.[contenthash].css' // 'style.[contenthash].css' put this if you want to get hashed files to cache bust
-			}),
 			new HtmlWebpackPlugin({
 				inject: true,
 				hash: true,

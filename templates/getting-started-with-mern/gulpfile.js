@@ -5,14 +5,8 @@
 // i don't use them here because they are more magic and make it harder to show what's happening
 const gulp = require('gulp');
 
-// Explanation for Students ---- This is for compiling SASS, we haven't learned SASS yet but this is as good a chance as any to to talk about how we could compile it.
-const sass = require('gulp-sass')(require('sass'));
-
 // Use Nodemon programatically
-const nodemon = require('gulp-nodemon');
-
-// Explanation for Students ---- This is for those pesky experimental features of css that are not available in all browsers without prefixes like webkit and moz
-const autoprefixer = require('gulp-autoprefixer');
+const nodemon = require('gulp-nodemon-pro');
 
 // Explanation for Students ---- This is the mastermind that will open up our code in a browser window
 const browserSync = require('browser-sync').create();
@@ -27,12 +21,6 @@ var exec = require('child_process').exec;
 // Explanation for Students ---- This is the brain child for our self made development server
 
 gulp.task('default', (cb) => {
-	// Compile Styles
-	exec('npm run styles', function(err, stdout, stderr) {
-		console.log(stdout);
-		console.log(stderr);
-		cb(err);
-	});
 	// Compile REACT
 	exec('npm run dev:webpack', function(err, stdout, stderr) {
 		console.log(stdout);
@@ -53,41 +41,17 @@ gulp.task('default', (cb) => {
 	 serveStatic: ['./public']
 	});
 	// SET UP WATCJERS TO LISTEN TO CHANGES IN FILES
-	gulp.watch('./src/scss/**/*',  gulp.task('styles'));
-	gulp.watch('./src/components/**/*', gulp.task('webpack'));
-	gulp.watch('./src/**/*.js', gulp.task('webpack'));
-	gulp.watch('./src/*', gulp.task('webpack'));
+	gulp.watch(['./src/*','./src/**/*.js','./src/components/**/**/*'], gulp.task('js-watch')).on('change', reload);;
 	// LISTEN FOR WHEN TO RELOAD PAGES
 	gulp
 		.watch([
-			'./public/**/*',
-			'./public/*',
 			'./public/js/**/.#*js',
-			'./public/css/**/.#*css',
-			'./src/**/*'
+			'./public/index.html'
 		])
 		.on('change', reload);
 		cb()
 });
 
-// Explanation for Students ---- This is compiles our styles
-gulp.task('styles', (cb) => {
-	gulp
-		.src('src/scss/**/*.scss')
-		.pipe(
-			sass({
-				outputStyle: 'compressed'
-			}).on('error', sass.logError)
-		)
-		.pipe(
-			autoprefixer({
-				cascade: false
-			})
-		)
-		.pipe(gulp.dest('./public/css'))
-		.pipe(browserSync.stream());
-		cb()
-});
 
 
 // Explanation for Students ---- This is for the development build
@@ -107,3 +71,9 @@ gulp.task('build', cb => {
 		cb(err);
 	});
 });
+
+gulp.task('js-watch', gulp.task('webpack'), function (done) {
+    reload();
+    done();
+});
+

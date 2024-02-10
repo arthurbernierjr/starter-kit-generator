@@ -10,11 +10,11 @@ I will base all my tutorials on this Starter Kit.
 
 # Who Am I?
 
-![arthurbernierjr.com](http://progressandfortune.com/smac_images/profile.jpg)
+![bigpoppacode.io](https://i.imgur.com/PjuyuzK.jpeg)
 
 I am Arthur Bernier Jr. I work as freelance fullstack web developer and attraction marketing consultant specializing in supporting e-commerce brands,
 subscription box sites, social activists, religious/non-profit leaders and creative entrepreneurs(i.e. barbers, artists, musicians, stylists, models and photographers).
-I have a passion for helping entrepreneurs reach their perfect audience and helping you communicate to that audience in a way that makes them know, like and trust you. I also am a Full-Time Instructor at General Assembly as well as a Software Engineer at Blavity Inc.
+I have a passion for helping entrepreneurs reach their perfect audience and helping you communicate to that audience in a way that makes them know, like and trust you. I also am a Part-Time Instructor at General Assembly, a Senior Director at a National Non-Profit, a Multi Time Start-Up Founder who has raised 7 figures in VC, Creator and Maintainer of MambaScript, and Multi Time Tech Lead at startups from Seed Stage to Billion Dollar Valuation.
 
 
 # My Favorite Online Instructors
@@ -29,10 +29,6 @@ I have a passion for helping entrepreneurs reach their perfect audience and help
 
 ## Steps
 
-**Install Gulp Globally**
-```bash
-npm i -g gulp-cli
-```
 
 **Start the dev server**
 ```bash
@@ -41,11 +37,6 @@ npm run dev
 ### or
 ```bash
 yarn dev
-```
-
-**Start the dev server with proxy**
-```bash
-npm run proxy
 ```
 
 **Build files for production**
@@ -66,3 +57,6 @@ npm start
 ```bash
 yarn start
 ```
+
+
+This starter kit uses Gulp, Webpack, Browsersync, Nodemon and Babel to create a unified development environment with hot reloading and automatically building files to disk. It uses the concept of `Train How You Fight, Fight Like You Train`. Instead of building files in memory in dev mode, this starter kit builds your files directly to the public folder and statically serves the public folder. This means that the public folder is serving your site just like it would in production and this meant to be a simple full stack react starter kit that any learner can build upon.
